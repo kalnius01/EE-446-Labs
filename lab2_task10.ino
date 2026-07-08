@@ -1,7 +1,6 @@
   #include <Arduino_APDS9960.h>
   #include <PDM.h>
   #include <Arduino_BMI270_BMM150.h>
-  //#include <Arduino_LSM9DS1.h>
 
   short sampleBuffer[256];
   volatile int samplesRead = 0;
@@ -102,34 +101,34 @@
       near = 0;
     }
 
-    Serial.print("raw, mic = ");
+    Serial.print("raw,mic=");
     Serial.print(level);
-    Serial.print(", clear = ");
+    Serial.print(",clear=");
     Serial.print(c);
-    Serial.print(", motion = ");
+    Serial.print(",motion=");
     Serial.print(totMov);
-    Serial.print(" prox = ");
+    Serial.print(",prox=");
     Serial.println(proximity);
 
-    Serial.print("flags, sound = ");
+    Serial.print("flags,sound=");
     Serial.print(sound);
-    Serial.print(", dark = ");
+    Serial.print(",dark=");
     Serial.print(dark);
-    Serial.print(", moving = ");
+    Serial.print(",moving=");
     Serial.print(moving);
-    Serial.print(" near = ");
+    Serial.print(",near=");
     Serial.println(near);
 
     if (sound == 0 && dark == 0 && moving == 0 && near == 0) {
-      Serial.println("State: QUIET_BRIGHT_STEADY_FAR");
+      Serial.println("state,QUIET_BRIGHT_STEADY_FAR");
     } else if (sound == 1 && dark == 0 && moving == 0 && near == 0) {
-      Serial.println("State: NOISY_BRIGHT_STEADY_FAR");
+      Serial.println("state,NOISY_BRIGHT_STEADY_FAR");
     } else if (sound == 0 && dark == 1 && moving == 0 && near == 1) {
-      Serial.println("State: QUIET_DARK_STEADY_NEAR");
+      Serial.println("state,QUIET_DARK_STEADY_NEAR");
     } else if (sound == 1 && dark == 0 && moving == 1 && near == 1) {
-      Serial.println("State: NOISY_BRIGHT_MOVING_NEAR");
+      Serial.println("state,NOISY_BRIGHT_MOVING_NEAR");
     } else {
-      Serial.println("State: UNDEFINED");
+      Serial.println("state,UNDEFINED");
     }
 
     delay(500);
